@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vetcomm/features/in_app_purchase/in_app_purchase_screen.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:vetcomm/home_screen.dart';
+
+import 'features/stripe_payment_gateway/stripe_services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
   runApp(const MainApp());
 }
 
@@ -11,7 +16,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: InAppPurchaseScreen(),
+      home: HomeScreen(),
     );
   }
 }
