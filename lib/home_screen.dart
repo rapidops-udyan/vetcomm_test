@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'features/in_app_purchase/in_app_purchase_screen.dart';
 import 'features/stripe_payment_gateway/payment_screen.dart';
+import 'features/youtube/youtube_player_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -38,6 +39,17 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Payment Screen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const YoutubePlayerFlutter(),
+                  ),
+                );
+              },
+              child: const Text('Youtube Screen'),
             )
           ],
         ),
