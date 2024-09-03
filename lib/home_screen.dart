@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('In APP Purchase'),
+              child: const Text('In-App Purchase'),
             ),
             ElevatedButton(
               onPressed: () {
