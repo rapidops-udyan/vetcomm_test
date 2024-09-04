@@ -9,7 +9,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController amountTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ),
       body: Column(
         children: [
+          TextField(
+            controller: amountTextController,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
           ElevatedButton(
             onPressed: () {
               StripeServices.instance.makePayment();
