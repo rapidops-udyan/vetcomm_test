@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubePlayerFlutter extends StatefulWidget {
-  const YoutubePlayerFlutter({
-    super.key,
-  });
+  const YoutubePlayerFlutter({super.key});
 
   @override
   State createState() => _YoutubePlayerFlutterState();
@@ -14,9 +12,6 @@ class _YoutubePlayerFlutterState extends State<YoutubePlayerFlutter> {
   late YoutubePlayerController controller;
   late YoutubeMetaData videoMetaData;
 
-  String title = '';
-  String author = '';
-  Duration duration = Duration.zero;
   bool isPlayerReady = false;
 
   @override
@@ -52,47 +47,61 @@ class _YoutubePlayerFlutterState extends State<YoutubePlayerFlutter> {
     super.dispose();
   }
 
+  Future<bool> _onWillPop() async {
+    if (controller.value.isFullScreen) {
+      controller.toggleFullScreenMode();
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayerBuilder(
-      builder: (context, player) => Scaffold(
-        appBar: AppBar(
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: controller.value.isFullScreen
+            ? null
+            : AppBar(
           title: const Text('Youtube Player Flutter'),
           backgroundColor: Colors.blueAccent,
         ),
-        body: ListView(
-          children: [
-            player,
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    videoMetaData.title,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+        body: YoutubePlayerBuilder(
+          player: YoutubePlayer(
+            controller: controller,
+            onReady: () {
+              setState(() {
+                isPlayerReady = true;
+              });
+            },
+          ),
+          builder: (context, player) => ListView(
+            children: [
+              player,
+              if (!controller.value.isFullScreen)
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        videoMetaData.title,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text('Channel: ${videoMetaData.author}'),
+                      const SizedBox(height: 4),
+                      Text('Video ID: ${videoMetaData.videoId}'),
+                      const SizedBox(height: 4),
+                      Text(
+                          'Current Quality: ${controller.value.playbackQuality ?? "Auto"}'),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  Text('Channel: ${videoMetaData.author}'),
-                  const SizedBox(height: 4),
-                  Text('Video ID: ${videoMetaData.videoId}'),
-                  const SizedBox(height: 4),
-                  Text(
-                      'Current Quality: ${controller.value.playbackQuality ?? "Auto"}'),
-                ],
-              ),
-            ),
-          ],
+                ),
+            ],
+          ),
         ),
-      ),
-      player: YoutubePlayer(
-        controller: controller,
-        onReady: () {
-          setState(() {
-            isPlayerReady = true;
-          });
-        },
       ),
     );
   }
