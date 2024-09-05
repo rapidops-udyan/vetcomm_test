@@ -1,17 +1,30 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:vetcomm/features/stripe_payment_gateway/stripe_services.dart';
 
 part 'stripe_payment_bloc.freezed.dart';
 part 'stripe_payment_event.dart';
 part 'stripe_payment_state.dart';
 
 class StripePaymentBloc extends Bloc<StripePaymentEvent, StripePaymentState> {
-
   StripePaymentBloc() : super(const StripePaymentState.initial()) {
-    on<StripePaymentEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<_StripePaymentInitializePayment>(_onInitializePyamentEvent);
+    on<_StripePaymentCompletionEvent>(_onCompletionPaymentEvent);
+    on<_StripepaymentFailedEvent>(_onPaymentFailedEvent);
   }
+
+  Future<void> _onInitializePyamentEvent(_StripePaymentInitializePayment event,
+      Emitter<StripePaymentState> emit) async {
+    await StripeServices.instance.makePayment();
+  }
+
+  FutureOr<void> _onCompletionPaymentEvent(
+      _StripePaymentCompletionEvent event, Emitter<StripePaymentState> emit) {}
+
+  FutureOr<void> _onPaymentFailedEvent(
+      _StripepaymentFailedEvent event, Emitter<StripePaymentState> emit) {}
 }
 
 String stripePublishableKey =
