@@ -1,7 +1,7 @@
 name: vetcomm
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0+1
 
 environment:
   sdk: ^3.5.1
@@ -19,6 +19,7 @@ dependencies:
 #  youtube video player
   youtube_player_flutter: ^9.0.3
   youtube_player_iframe: ^5.1.5
+  in_app_purchase_android: ^0.3.6+8
 
 dev_dependencies:
   flutter_test:

@@ -18,70 +18,72 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$InAppPurchaseEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
     required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
+        updatePurchases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,18 +111,21 @@ class _$InAppPurchaseEventCopyWithImpl<$Res, $Val extends InAppPurchaseEvent>
 }
 
 /// @nodoc
-abstract class _$$InitializeIAPImplCopyWith<$Res> {
-  factory _$$InitializeIAPImplCopyWith(
-          _$InitializeIAPImpl value, $Res Function(_$InitializeIAPImpl) then) =
-      __$$InitializeIAPImplCopyWithImpl<$Res>;
+abstract class _$$InAppPurchaseInitializeEventImplCopyWith<$Res> {
+  factory _$$InAppPurchaseInitializeEventImplCopyWith(
+          _$InAppPurchaseInitializeEventImpl value,
+          $Res Function(_$InAppPurchaseInitializeEventImpl) then) =
+      __$$InAppPurchaseInitializeEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitializeIAPImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$InitializeIAPImpl>
-    implements _$$InitializeIAPImplCopyWith<$Res> {
-  __$$InitializeIAPImplCopyWithImpl(
-      _$InitializeIAPImpl _value, $Res Function(_$InitializeIAPImpl) _then)
+class __$$InAppPurchaseInitializeEventImplCopyWithImpl<$Res>
+    extends _$InAppPurchaseEventCopyWithImpl<$Res,
+        _$InAppPurchaseInitializeEventImpl>
+    implements _$$InAppPurchaseInitializeEventImplCopyWith<$Res> {
+  __$$InAppPurchaseInitializeEventImplCopyWithImpl(
+      _$InAppPurchaseInitializeEventImpl _value,
+      $Res Function(_$InAppPurchaseInitializeEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of InAppPurchaseEvent
@@ -129,18 +134,20 @@ class __$$InitializeIAPImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitializeIAPImpl implements _InitializeIAP {
-  const _$InitializeIAPImpl();
+class _$InAppPurchaseInitializeEventImpl
+    implements _InAppPurchaseInitializeEvent {
+  const _$InAppPurchaseInitializeEventImpl();
 
   @override
   String toString() {
-    return 'InAppPurchaseEvent.initializeIAP()';
+    return 'InAppPurchaseEvent.initialize()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitializeIAPImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InAppPurchaseInitializeEventImpl);
   }
 
   @override
@@ -149,49 +156,48 @@ class _$InitializeIAPImpl implements _InitializeIAP {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
     required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return initializeIAP();
+    return initialize();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return initializeIAP?.call();
+    return initialize?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
     required TResult orElse(),
   }) {
-    if (initializeIAP != null) {
-      return initializeIAP();
+    if (initialize != null) {
+      return initialize();
     }
     return orElse();
   }
@@ -199,64 +205,71 @@ class _$InitializeIAPImpl implements _InitializeIAP {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
   }) {
-    return initializeIAP(this);
+    return initialize(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
   }) {
-    return initializeIAP?.call(this);
+    return initialize?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
     required TResult orElse(),
   }) {
-    if (initializeIAP != null) {
-      return initializeIAP(this);
+    if (initialize != null) {
+      return initialize(this);
     }
     return orElse();
   }
 }
 
-abstract class _InitializeIAP implements InAppPurchaseEvent {
-  const factory _InitializeIAP() = _$InitializeIAPImpl;
+abstract class _InAppPurchaseInitializeEvent implements InAppPurchaseEvent {
+  const factory _InAppPurchaseInitializeEvent() =
+      _$InAppPurchaseInitializeEventImpl;
 }
 
 /// @nodoc
-abstract class _$$FetchSubscriptionsImplCopyWith<$Res> {
-  factory _$$FetchSubscriptionsImplCopyWith(_$FetchSubscriptionsImpl value,
-          $Res Function(_$FetchSubscriptionsImpl) then) =
-      __$$FetchSubscriptionsImplCopyWithImpl<$Res>;
+abstract class _$$InAppPurchaseFetchProductsEventImplCopyWith<$Res> {
+  factory _$$InAppPurchaseFetchProductsEventImplCopyWith(
+          _$InAppPurchaseFetchProductsEventImpl value,
+          $Res Function(_$InAppPurchaseFetchProductsEventImpl) then) =
+      __$$InAppPurchaseFetchProductsEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FetchSubscriptionsImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$FetchSubscriptionsImpl>
-    implements _$$FetchSubscriptionsImplCopyWith<$Res> {
-  __$$FetchSubscriptionsImplCopyWithImpl(_$FetchSubscriptionsImpl _value,
-      $Res Function(_$FetchSubscriptionsImpl) _then)
+class __$$InAppPurchaseFetchProductsEventImplCopyWithImpl<$Res>
+    extends _$InAppPurchaseEventCopyWithImpl<$Res,
+        _$InAppPurchaseFetchProductsEventImpl>
+    implements _$$InAppPurchaseFetchProductsEventImplCopyWith<$Res> {
+  __$$InAppPurchaseFetchProductsEventImplCopyWithImpl(
+      _$InAppPurchaseFetchProductsEventImpl _value,
+      $Res Function(_$InAppPurchaseFetchProductsEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of InAppPurchaseEvent
@@ -265,18 +278,20 @@ class __$$FetchSubscriptionsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchSubscriptionsImpl implements _FetchSubscriptions {
-  const _$FetchSubscriptionsImpl();
+class _$InAppPurchaseFetchProductsEventImpl
+    implements _InAppPurchaseFetchProductsEvent {
+  const _$InAppPurchaseFetchProductsEventImpl();
 
   @override
   String toString() {
-    return 'InAppPurchaseEvent.fetchSubscriptions()';
+    return 'InAppPurchaseEvent.fetchProducts()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchSubscriptionsImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InAppPurchaseFetchProductsEventImpl);
   }
 
   @override
@@ -285,49 +300,48 @@ class _$FetchSubscriptionsImpl implements _FetchSubscriptions {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
     required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return fetchSubscriptions();
+    return fetchProducts();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return fetchSubscriptions?.call();
+    return fetchProducts?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
     required TResult orElse(),
   }) {
-    if (fetchSubscriptions != null) {
-      return fetchSubscriptions();
+    if (fetchProducts != null) {
+      return fetchProducts();
     }
     return orElse();
   }
@@ -335,66 +349,218 @@ class _$FetchSubscriptionsImpl implements _FetchSubscriptions {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
   }) {
-    return fetchSubscriptions(this);
+    return fetchProducts(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
   }) {
-    return fetchSubscriptions?.call(this);
+    return fetchProducts?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
     required TResult orElse(),
   }) {
-    if (fetchSubscriptions != null) {
-      return fetchSubscriptions(this);
+    if (fetchProducts != null) {
+      return fetchProducts(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchSubscriptions implements InAppPurchaseEvent {
-  const factory _FetchSubscriptions() = _$FetchSubscriptionsImpl;
+abstract class _InAppPurchaseFetchProductsEvent implements InAppPurchaseEvent {
+  const factory _InAppPurchaseFetchProductsEvent() =
+      _$InAppPurchaseFetchProductsEventImpl;
 }
 
 /// @nodoc
-abstract class _$$PurchaseSubscriptionImplCopyWith<$Res> {
-  factory _$$PurchaseSubscriptionImplCopyWith(_$PurchaseSubscriptionImpl value,
-          $Res Function(_$PurchaseSubscriptionImpl) then) =
-      __$$PurchaseSubscriptionImplCopyWithImpl<$Res>;
+abstract class _$$InAppPurchaseRestorePurchasesEventImplCopyWith<$Res> {
+  factory _$$InAppPurchaseRestorePurchasesEventImplCopyWith(
+          _$InAppPurchaseRestorePurchasesEventImpl value,
+          $Res Function(_$InAppPurchaseRestorePurchasesEventImpl) then) =
+      __$$InAppPurchaseRestorePurchasesEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InAppPurchaseRestorePurchasesEventImplCopyWithImpl<$Res>
+    extends _$InAppPurchaseEventCopyWithImpl<$Res,
+        _$InAppPurchaseRestorePurchasesEventImpl>
+    implements _$$InAppPurchaseRestorePurchasesEventImplCopyWith<$Res> {
+  __$$InAppPurchaseRestorePurchasesEventImplCopyWithImpl(
+      _$InAppPurchaseRestorePurchasesEventImpl _value,
+      $Res Function(_$InAppPurchaseRestorePurchasesEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InAppPurchaseEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InAppPurchaseRestorePurchasesEventImpl
+    implements _InAppPurchaseRestorePurchasesEvent {
+  const _$InAppPurchaseRestorePurchasesEventImpl();
+
+  @override
+  String toString() {
+    return 'InAppPurchaseEvent.restorePurchases()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InAppPurchaseRestorePurchasesEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
+    required TResult Function(List<PurchaseDetails> purchaseDetailsList)
+        updatePurchases,
+  }) {
+    return restorePurchases();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
+    TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
+        updatePurchases,
+  }) {
+    return restorePurchases?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
+    TResult Function(List<PurchaseDetails> purchaseDetailsList)?
+        updatePurchases,
+    required TResult orElse(),
+  }) {
+    if (restorePurchases != null) {
+      return restorePurchases();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
+  }) {
+    return restorePurchases(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
+  }) {
+    return restorePurchases?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
+    required TResult orElse(),
+  }) {
+    if (restorePurchases != null) {
+      return restorePurchases(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InAppPurchaseRestorePurchasesEvent
+    implements InAppPurchaseEvent {
+  const factory _InAppPurchaseRestorePurchasesEvent() =
+      _$InAppPurchaseRestorePurchasesEventImpl;
+}
+
+/// @nodoc
+abstract class _$$InAppPurchaseBuyProductEventImplCopyWith<$Res> {
+  factory _$$InAppPurchaseBuyProductEventImplCopyWith(
+          _$InAppPurchaseBuyProductEventImpl value,
+          $Res Function(_$InAppPurchaseBuyProductEventImpl) then) =
+      __$$InAppPurchaseBuyProductEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductDetails productDetails});
+  $Res call({ProductDetails product, PurchaseDetails? oldPurchaseDetails});
 }
 
 /// @nodoc
-class __$$PurchaseSubscriptionImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$PurchaseSubscriptionImpl>
-    implements _$$PurchaseSubscriptionImplCopyWith<$Res> {
-  __$$PurchaseSubscriptionImplCopyWithImpl(_$PurchaseSubscriptionImpl _value,
-      $Res Function(_$PurchaseSubscriptionImpl) _then)
+class __$$InAppPurchaseBuyProductEventImplCopyWithImpl<$Res>
+    extends _$InAppPurchaseEventCopyWithImpl<$Res,
+        _$InAppPurchaseBuyProductEventImpl>
+    implements _$$InAppPurchaseBuyProductEventImplCopyWith<$Res> {
+  __$$InAppPurchaseBuyProductEventImplCopyWithImpl(
+      _$InAppPurchaseBuyProductEventImpl _value,
+      $Res Function(_$InAppPurchaseBuyProductEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of InAppPurchaseEvent
@@ -402,98 +568,107 @@ class __$$PurchaseSubscriptionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productDetails = null,
+    Object? product = null,
+    Object? oldPurchaseDetails = freezed,
   }) {
-    return _then(_$PurchaseSubscriptionImpl(
-      null == productDetails
-          ? _value.productDetails
-          : productDetails // ignore: cast_nullable_to_non_nullable
+    return _then(_$InAppPurchaseBuyProductEventImpl(
+      null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
               as ProductDetails,
+      freezed == oldPurchaseDetails
+          ? _value.oldPurchaseDetails
+          : oldPurchaseDetails // ignore: cast_nullable_to_non_nullable
+              as PurchaseDetails?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$PurchaseSubscriptionImpl implements _PurchaseSubscription {
-  const _$PurchaseSubscriptionImpl(this.productDetails);
+class _$InAppPurchaseBuyProductEventImpl
+    implements _InAppPurchaseBuyProductEvent {
+  const _$InAppPurchaseBuyProductEventImpl(this.product,
+      [this.oldPurchaseDetails]);
 
   @override
-  final ProductDetails productDetails;
+  final ProductDetails product;
+  @override
+  final PurchaseDetails? oldPurchaseDetails;
 
   @override
   String toString() {
-    return 'InAppPurchaseEvent.purchaseSubscription(productDetails: $productDetails)';
+    return 'InAppPurchaseEvent.buyProduct(product: $product, oldPurchaseDetails: $oldPurchaseDetails)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PurchaseSubscriptionImpl &&
-            (identical(other.productDetails, productDetails) ||
-                other.productDetails == productDetails));
+            other is _$InAppPurchaseBuyProductEventImpl &&
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.oldPurchaseDetails, oldPurchaseDetails) ||
+                other.oldPurchaseDetails == oldPurchaseDetails));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, productDetails);
+  int get hashCode => Object.hash(runtimeType, product, oldPurchaseDetails);
 
   /// Create a copy of InAppPurchaseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PurchaseSubscriptionImplCopyWith<_$PurchaseSubscriptionImpl>
-      get copyWith =>
-          __$$PurchaseSubscriptionImplCopyWithImpl<_$PurchaseSubscriptionImpl>(
-              this, _$identity);
+  _$$InAppPurchaseBuyProductEventImplCopyWith<
+          _$InAppPurchaseBuyProductEventImpl>
+      get copyWith => __$$InAppPurchaseBuyProductEventImplCopyWithImpl<
+          _$InAppPurchaseBuyProductEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
     required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return purchaseSubscription(productDetails);
+    return buyProduct(product, oldPurchaseDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return purchaseSubscription?.call(productDetails);
+    return buyProduct?.call(product, oldPurchaseDetails);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
     required TResult orElse(),
   }) {
-    if (purchaseSubscription != null) {
-      return purchaseSubscription(productDetails);
+    if (buyProduct != null) {
+      return buyProduct(product, oldPurchaseDetails);
     }
     return orElse();
   }
@@ -501,212 +676,84 @@ class _$PurchaseSubscriptionImpl implements _PurchaseSubscription {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
   }) {
-    return purchaseSubscription(this);
+    return buyProduct(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
   }) {
-    return purchaseSubscription?.call(this);
+    return buyProduct?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
     required TResult orElse(),
   }) {
-    if (purchaseSubscription != null) {
-      return purchaseSubscription(this);
+    if (buyProduct != null) {
+      return buyProduct(this);
     }
     return orElse();
   }
 }
 
-abstract class _PurchaseSubscription implements InAppPurchaseEvent {
-  const factory _PurchaseSubscription(final ProductDetails productDetails) =
-      _$PurchaseSubscriptionImpl;
+abstract class _InAppPurchaseBuyProductEvent implements InAppPurchaseEvent {
+  const factory _InAppPurchaseBuyProductEvent(final ProductDetails product,
+          [final PurchaseDetails? oldPurchaseDetails]) =
+      _$InAppPurchaseBuyProductEventImpl;
 
-  ProductDetails get productDetails;
+  ProductDetails get product;
+  PurchaseDetails? get oldPurchaseDetails;
 
   /// Create a copy of InAppPurchaseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PurchaseSubscriptionImplCopyWith<_$PurchaseSubscriptionImpl>
+  _$$InAppPurchaseBuyProductEventImplCopyWith<
+          _$InAppPurchaseBuyProductEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RestoreSubscriptionsImplCopyWith<$Res> {
-  factory _$$RestoreSubscriptionsImplCopyWith(_$RestoreSubscriptionsImpl value,
-          $Res Function(_$RestoreSubscriptionsImpl) then) =
-      __$$RestoreSubscriptionsImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RestoreSubscriptionsImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$RestoreSubscriptionsImpl>
-    implements _$$RestoreSubscriptionsImplCopyWith<$Res> {
-  __$$RestoreSubscriptionsImplCopyWithImpl(_$RestoreSubscriptionsImpl _value,
-      $Res Function(_$RestoreSubscriptionsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InAppPurchaseEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$RestoreSubscriptionsImpl implements _RestoreSubscriptions {
-  const _$RestoreSubscriptionsImpl();
-
-  @override
-  String toString() {
-    return 'InAppPurchaseEvent.restoreSubscriptions()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RestoreSubscriptionsImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
-    required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
-  }) {
-    return restoreSubscriptions();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
-    TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
-  }) {
-    return restoreSubscriptions?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
-    TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
-    required TResult orElse(),
-  }) {
-    if (restoreSubscriptions != null) {
-      return restoreSubscriptions();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
-  }) {
-    return restoreSubscriptions(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
-  }) {
-    return restoreSubscriptions?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
-    required TResult orElse(),
-  }) {
-    if (restoreSubscriptions != null) {
-      return restoreSubscriptions(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RestoreSubscriptions implements InAppPurchaseEvent {
-  const factory _RestoreSubscriptions() = _$RestoreSubscriptionsImpl;
-}
-
-/// @nodoc
-abstract class _$$HandlePurchaseUpdateImplCopyWith<$Res> {
-  factory _$$HandlePurchaseUpdateImplCopyWith(_$HandlePurchaseUpdateImpl value,
-          $Res Function(_$HandlePurchaseUpdateImpl) then) =
-      __$$HandlePurchaseUpdateImplCopyWithImpl<$Res>;
+abstract class _$$InAppPurchaseUpdatePurchasesEventImplCopyWith<$Res> {
+  factory _$$InAppPurchaseUpdatePurchasesEventImplCopyWith(
+          _$InAppPurchaseUpdatePurchasesEventImpl value,
+          $Res Function(_$InAppPurchaseUpdatePurchasesEventImpl) then) =
+      __$$InAppPurchaseUpdatePurchasesEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<PurchaseDetails> purchaseDetailsList});
 }
 
 /// @nodoc
-class __$$HandlePurchaseUpdateImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$HandlePurchaseUpdateImpl>
-    implements _$$HandlePurchaseUpdateImplCopyWith<$Res> {
-  __$$HandlePurchaseUpdateImplCopyWithImpl(_$HandlePurchaseUpdateImpl _value,
-      $Res Function(_$HandlePurchaseUpdateImpl) _then)
+class __$$InAppPurchaseUpdatePurchasesEventImplCopyWithImpl<$Res>
+    extends _$InAppPurchaseEventCopyWithImpl<$Res,
+        _$InAppPurchaseUpdatePurchasesEventImpl>
+    implements _$$InAppPurchaseUpdatePurchasesEventImplCopyWith<$Res> {
+  __$$InAppPurchaseUpdatePurchasesEventImplCopyWithImpl(
+      _$InAppPurchaseUpdatePurchasesEventImpl _value,
+      $Res Function(_$InAppPurchaseUpdatePurchasesEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of InAppPurchaseEvent
@@ -716,7 +763,7 @@ class __$$HandlePurchaseUpdateImplCopyWithImpl<$Res>
   $Res call({
     Object? purchaseDetailsList = null,
   }) {
-    return _then(_$HandlePurchaseUpdateImpl(
+    return _then(_$InAppPurchaseUpdatePurchasesEventImpl(
       null == purchaseDetailsList
           ? _value._purchaseDetailsList
           : purchaseDetailsList // ignore: cast_nullable_to_non_nullable
@@ -727,8 +774,9 @@ class __$$HandlePurchaseUpdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HandlePurchaseUpdateImpl implements _HandlePurchaseUpdate {
-  const _$HandlePurchaseUpdateImpl(
+class _$InAppPurchaseUpdatePurchasesEventImpl
+    implements _InAppPurchaseUpdatePurchasesEvent {
+  const _$InAppPurchaseUpdatePurchasesEventImpl(
       final List<PurchaseDetails> purchaseDetailsList)
       : _purchaseDetailsList = purchaseDetailsList;
 
@@ -743,14 +791,14 @@ class _$HandlePurchaseUpdateImpl implements _HandlePurchaseUpdate {
 
   @override
   String toString() {
-    return 'InAppPurchaseEvent.handlePurchaseUpdate(purchaseDetailsList: $purchaseDetailsList)';
+    return 'InAppPurchaseEvent.updatePurchases(purchaseDetailsList: $purchaseDetailsList)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HandlePurchaseUpdateImpl &&
+            other is _$InAppPurchaseUpdatePurchasesEventImpl &&
             const DeepCollectionEquality()
                 .equals(other._purchaseDetailsList, _purchaseDetailsList));
   }
@@ -764,57 +812,56 @@ class _$HandlePurchaseUpdateImpl implements _HandlePurchaseUpdate {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$HandlePurchaseUpdateImplCopyWith<_$HandlePurchaseUpdateImpl>
-      get copyWith =>
-          __$$HandlePurchaseUpdateImplCopyWithImpl<_$HandlePurchaseUpdateImpl>(
-              this, _$identity);
+  _$$InAppPurchaseUpdatePurchasesEventImplCopyWith<
+          _$InAppPurchaseUpdatePurchasesEventImpl>
+      get copyWith => __$$InAppPurchaseUpdatePurchasesEventImplCopyWithImpl<
+          _$InAppPurchaseUpdatePurchasesEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
+    required TResult Function() initialize,
+    required TResult Function() fetchProducts,
+    required TResult Function() restorePurchases,
+    required TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)
+        buyProduct,
     required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return handlePurchaseUpdate(purchaseDetailsList);
+    return updatePurchases(purchaseDetailsList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
+    TResult? Function()? initialize,
+    TResult? Function()? fetchProducts,
+    TResult? Function()? restorePurchases,
+    TResult? Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
   }) {
-    return handlePurchaseUpdate?.call(purchaseDetailsList);
+    return updatePurchases?.call(purchaseDetailsList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
+    TResult Function()? initialize,
+    TResult Function()? fetchProducts,
+    TResult Function()? restorePurchases,
+    TResult Function(
+            ProductDetails product, PurchaseDetails? oldPurchaseDetails)?
+        buyProduct,
     TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
+        updatePurchases,
     required TResult orElse(),
   }) {
-    if (handlePurchaseUpdate != null) {
-      return handlePurchaseUpdate(purchaseDetailsList);
+    if (updatePurchases != null) {
+      return updatePurchases(purchaseDetailsList);
     }
     return orElse();
   }
@@ -822,256 +869,72 @@ class _$HandlePurchaseUpdateImpl implements _HandlePurchaseUpdate {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
+    required TResult Function(_InAppPurchaseInitializeEvent value) initialize,
+    required TResult Function(_InAppPurchaseFetchProductsEvent value)
+        fetchProducts,
+    required TResult Function(_InAppPurchaseRestorePurchasesEvent value)
+        restorePurchases,
+    required TResult Function(_InAppPurchaseBuyProductEvent value) buyProduct,
+    required TResult Function(_InAppPurchaseUpdatePurchasesEvent value)
+        updatePurchases,
   }) {
-    return handlePurchaseUpdate(this);
+    return updatePurchases(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult? Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult? Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult? Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult? Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult? Function(_InAppPurchaseUpdatePurchasesEvent value)?
+        updatePurchases,
   }) {
-    return handlePurchaseUpdate?.call(this);
+    return updatePurchases?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
+    TResult Function(_InAppPurchaseInitializeEvent value)? initialize,
+    TResult Function(_InAppPurchaseFetchProductsEvent value)? fetchProducts,
+    TResult Function(_InAppPurchaseRestorePurchasesEvent value)?
+        restorePurchases,
+    TResult Function(_InAppPurchaseBuyProductEvent value)? buyProduct,
+    TResult Function(_InAppPurchaseUpdatePurchasesEvent value)? updatePurchases,
     required TResult orElse(),
   }) {
-    if (handlePurchaseUpdate != null) {
-      return handlePurchaseUpdate(this);
+    if (updatePurchases != null) {
+      return updatePurchases(this);
     }
     return orElse();
   }
 }
 
-abstract class _HandlePurchaseUpdate implements InAppPurchaseEvent {
-  const factory _HandlePurchaseUpdate(
+abstract class _InAppPurchaseUpdatePurchasesEvent
+    implements InAppPurchaseEvent {
+  const factory _InAppPurchaseUpdatePurchasesEvent(
           final List<PurchaseDetails> purchaseDetailsList) =
-      _$HandlePurchaseUpdateImpl;
+      _$InAppPurchaseUpdatePurchasesEventImpl;
 
   List<PurchaseDetails> get purchaseDetailsList;
 
   /// Create a copy of InAppPurchaseEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$HandlePurchaseUpdateImplCopyWith<_$HandlePurchaseUpdateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UpdatePurchaseStatusImplCopyWith<$Res> {
-  factory _$$UpdatePurchaseStatusImplCopyWith(_$UpdatePurchaseStatusImpl value,
-          $Res Function(_$UpdatePurchaseStatusImpl) then) =
-      __$$UpdatePurchaseStatusImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({InAppPurchaseStatus status, String? errorMessage});
-}
-
-/// @nodoc
-class __$$UpdatePurchaseStatusImplCopyWithImpl<$Res>
-    extends _$InAppPurchaseEventCopyWithImpl<$Res, _$UpdatePurchaseStatusImpl>
-    implements _$$UpdatePurchaseStatusImplCopyWith<$Res> {
-  __$$UpdatePurchaseStatusImplCopyWithImpl(_$UpdatePurchaseStatusImpl _value,
-      $Res Function(_$UpdatePurchaseStatusImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InAppPurchaseEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_$UpdatePurchaseStatusImpl(
-      null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as InAppPurchaseStatus,
-      freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdatePurchaseStatusImpl implements _UpdatePurchaseStatus {
-  const _$UpdatePurchaseStatusImpl(this.status, this.errorMessage);
-
-  @override
-  final InAppPurchaseStatus status;
-  @override
-  final String? errorMessage;
-
-  @override
-  String toString() {
-    return 'InAppPurchaseEvent.updatePurchaseStatus(status: $status, errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdatePurchaseStatusImpl &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, status, errorMessage);
-
-  /// Create a copy of InAppPurchaseEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdatePurchaseStatusImplCopyWith<_$UpdatePurchaseStatusImpl>
-      get copyWith =>
-          __$$UpdatePurchaseStatusImplCopyWithImpl<_$UpdatePurchaseStatusImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initializeIAP,
-    required TResult Function() fetchSubscriptions,
-    required TResult Function(ProductDetails productDetails)
-        purchaseSubscription,
-    required TResult Function() restoreSubscriptions,
-    required TResult Function(List<PurchaseDetails> purchaseDetailsList)
-        handlePurchaseUpdate,
-    required TResult Function(InAppPurchaseStatus status, String? errorMessage)
-        updatePurchaseStatus,
-  }) {
-    return updatePurchaseStatus(status, errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initializeIAP,
-    TResult? Function()? fetchSubscriptions,
-    TResult? Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult? Function()? restoreSubscriptions,
-    TResult? Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult? Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
-  }) {
-    return updatePurchaseStatus?.call(status, errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initializeIAP,
-    TResult Function()? fetchSubscriptions,
-    TResult Function(ProductDetails productDetails)? purchaseSubscription,
-    TResult Function()? restoreSubscriptions,
-    TResult Function(List<PurchaseDetails> purchaseDetailsList)?
-        handlePurchaseUpdate,
-    TResult Function(InAppPurchaseStatus status, String? errorMessage)?
-        updatePurchaseStatus,
-    required TResult orElse(),
-  }) {
-    if (updatePurchaseStatus != null) {
-      return updatePurchaseStatus(status, errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitializeIAP value) initializeIAP,
-    required TResult Function(_FetchSubscriptions value) fetchSubscriptions,
-    required TResult Function(_PurchaseSubscription value) purchaseSubscription,
-    required TResult Function(_RestoreSubscriptions value) restoreSubscriptions,
-    required TResult Function(_HandlePurchaseUpdate value) handlePurchaseUpdate,
-    required TResult Function(_UpdatePurchaseStatus value) updatePurchaseStatus,
-  }) {
-    return updatePurchaseStatus(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitializeIAP value)? initializeIAP,
-    TResult? Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult? Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult? Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult? Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult? Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
-  }) {
-    return updatePurchaseStatus?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitializeIAP value)? initializeIAP,
-    TResult Function(_FetchSubscriptions value)? fetchSubscriptions,
-    TResult Function(_PurchaseSubscription value)? purchaseSubscription,
-    TResult Function(_RestoreSubscriptions value)? restoreSubscriptions,
-    TResult Function(_HandlePurchaseUpdate value)? handlePurchaseUpdate,
-    TResult Function(_UpdatePurchaseStatus value)? updatePurchaseStatus,
-    required TResult orElse(),
-  }) {
-    if (updatePurchaseStatus != null) {
-      return updatePurchaseStatus(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdatePurchaseStatus implements InAppPurchaseEvent {
-  const factory _UpdatePurchaseStatus(
-          final InAppPurchaseStatus status, final String? errorMessage) =
-      _$UpdatePurchaseStatusImpl;
-
-  InAppPurchaseStatus get status;
-  String? get errorMessage;
-
-  /// Create a copy of InAppPurchaseEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatePurchaseStatusImplCopyWith<_$UpdatePurchaseStatusImpl>
+  _$$InAppPurchaseUpdatePurchasesEventImplCopyWith<
+          _$InAppPurchaseUpdatePurchasesEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$InAppPurchaseState {
   InAppPurchaseStatus get status => throw _privateConstructorUsedError;
-  InAppPurchase? get inAppPurchase => throw _privateConstructorUsedError;
-  List<ProductDetails> get subscriptions => throw _privateConstructorUsedError;
-  Set<String> get activeSubscriptions => throw _privateConstructorUsedError;
-  StreamSubscription<List<PurchaseDetails>>? get purchaseStreamSubscription =>
-      throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
-  Set<String> get subscriptionProductIds => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+  List<ProductDetails> get products => throw _privateConstructorUsedError;
+  PurchaseDetails? get activeSubscription => throw _privateConstructorUsedError;
 
   /// Create a copy of InAppPurchaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -1088,12 +951,9 @@ abstract class $InAppPurchaseStateCopyWith<$Res> {
   @useResult
   $Res call(
       {InAppPurchaseStatus status,
-      InAppPurchase? inAppPurchase,
-      List<ProductDetails> subscriptions,
-      Set<String> activeSubscriptions,
-      StreamSubscription<List<PurchaseDetails>>? purchaseStreamSubscription,
-      String? errorMessage,
-      Set<String> subscriptionProductIds});
+      String? error,
+      List<ProductDetails> products,
+      PurchaseDetails? activeSubscription});
 }
 
 /// @nodoc
@@ -1112,42 +972,27 @@ class _$InAppPurchaseStateCopyWithImpl<$Res, $Val extends InAppPurchaseState>
   @override
   $Res call({
     Object? status = null,
-    Object? inAppPurchase = freezed,
-    Object? subscriptions = null,
-    Object? activeSubscriptions = null,
-    Object? purchaseStreamSubscription = freezed,
-    Object? errorMessage = freezed,
-    Object? subscriptionProductIds = null,
+    Object? error = freezed,
+    Object? products = null,
+    Object? activeSubscription = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as InAppPurchaseStatus,
-      inAppPurchase: freezed == inAppPurchase
-          ? _value.inAppPurchase
-          : inAppPurchase // ignore: cast_nullable_to_non_nullable
-              as InAppPurchase?,
-      subscriptions: null == subscriptions
-          ? _value.subscriptions
-          : subscriptions // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetails>,
-      activeSubscriptions: null == activeSubscriptions
-          ? _value.activeSubscriptions
-          : activeSubscriptions // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      purchaseStreamSubscription: freezed == purchaseStreamSubscription
-          ? _value.purchaseStreamSubscription
-          : purchaseStreamSubscription // ignore: cast_nullable_to_non_nullable
-              as StreamSubscription<List<PurchaseDetails>>?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      subscriptionProductIds: null == subscriptionProductIds
-          ? _value.subscriptionProductIds
-          : subscriptionProductIds // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductDetails>,
+      activeSubscription: freezed == activeSubscription
+          ? _value.activeSubscription
+          : activeSubscription // ignore: cast_nullable_to_non_nullable
+              as PurchaseDetails?,
     ) as $Val);
   }
 }
@@ -1162,12 +1007,9 @@ abstract class _$$InAppPurchaseStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {InAppPurchaseStatus status,
-      InAppPurchase? inAppPurchase,
-      List<ProductDetails> subscriptions,
-      Set<String> activeSubscriptions,
-      StreamSubscription<List<PurchaseDetails>>? purchaseStreamSubscription,
-      String? errorMessage,
-      Set<String> subscriptionProductIds});
+      String? error,
+      List<ProductDetails> products,
+      PurchaseDetails? activeSubscription});
 }
 
 /// @nodoc
@@ -1184,42 +1026,27 @@ class __$$InAppPurchaseStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? inAppPurchase = freezed,
-    Object? subscriptions = null,
-    Object? activeSubscriptions = null,
-    Object? purchaseStreamSubscription = freezed,
-    Object? errorMessage = freezed,
-    Object? subscriptionProductIds = null,
+    Object? error = freezed,
+    Object? products = null,
+    Object? activeSubscription = freezed,
   }) {
     return _then(_$InAppPurchaseStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as InAppPurchaseStatus,
-      inAppPurchase: freezed == inAppPurchase
-          ? _value.inAppPurchase
-          : inAppPurchase // ignore: cast_nullable_to_non_nullable
-              as InAppPurchase?,
-      subscriptions: null == subscriptions
-          ? _value._subscriptions
-          : subscriptions // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetails>,
-      activeSubscriptions: null == activeSubscriptions
-          ? _value._activeSubscriptions
-          : activeSubscriptions // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      purchaseStreamSubscription: freezed == purchaseStreamSubscription
-          ? _value.purchaseStreamSubscription
-          : purchaseStreamSubscription // ignore: cast_nullable_to_non_nullable
-              as StreamSubscription<List<PurchaseDetails>>?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      subscriptionProductIds: null == subscriptionProductIds
-          ? _value._subscriptionProductIds
-          : subscriptionProductIds // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductDetails>,
+      activeSubscription: freezed == activeSubscription
+          ? _value.activeSubscription
+          : activeSubscription // ignore: cast_nullable_to_non_nullable
+              as PurchaseDetails?,
     ));
   }
 }
@@ -1229,60 +1056,31 @@ class __$$InAppPurchaseStateImplCopyWithImpl<$Res>
 class _$InAppPurchaseStateImpl implements _InAppPurchaseState {
   const _$InAppPurchaseStateImpl(
       {this.status = InAppPurchaseStatus.initial,
-      this.inAppPurchase,
-      final List<ProductDetails> subscriptions = const [],
-      final Set<String> activeSubscriptions = const {},
-      this.purchaseStreamSubscription,
-      this.errorMessage,
-      final Set<String> subscriptionProductIds = const {
-        'monthly_subscription',
-        'yearly_subscription'
-      }})
-      : _subscriptions = subscriptions,
-        _activeSubscriptions = activeSubscriptions,
-        _subscriptionProductIds = subscriptionProductIds;
+      this.error,
+      final List<ProductDetails> products = const [],
+      this.activeSubscription})
+      : _products = products;
 
   @override
   @JsonKey()
   final InAppPurchaseStatus status;
   @override
-  final InAppPurchase? inAppPurchase;
-  final List<ProductDetails> _subscriptions;
+  final String? error;
+  final List<ProductDetails> _products;
   @override
   @JsonKey()
-  List<ProductDetails> get subscriptions {
-    if (_subscriptions is EqualUnmodifiableListView) return _subscriptions;
+  List<ProductDetails> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_subscriptions);
-  }
-
-  final Set<String> _activeSubscriptions;
-  @override
-  @JsonKey()
-  Set<String> get activeSubscriptions {
-    if (_activeSubscriptions is EqualUnmodifiableSetView)
-      return _activeSubscriptions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_activeSubscriptions);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
-  final StreamSubscription<List<PurchaseDetails>>? purchaseStreamSubscription;
-  @override
-  final String? errorMessage;
-  final Set<String> _subscriptionProductIds;
-  @override
-  @JsonKey()
-  Set<String> get subscriptionProductIds {
-    if (_subscriptionProductIds is EqualUnmodifiableSetView)
-      return _subscriptionProductIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_subscriptionProductIds);
-  }
+  final PurchaseDetails? activeSubscription;
 
   @override
   String toString() {
-    return 'InAppPurchaseState(status: $status, inAppPurchase: $inAppPurchase, subscriptions: $subscriptions, activeSubscriptions: $activeSubscriptions, purchaseStreamSubscription: $purchaseStreamSubscription, errorMessage: $errorMessage, subscriptionProductIds: $subscriptionProductIds)';
+    return 'InAppPurchaseState(status: $status, error: $error, products: $products, activeSubscription: $activeSubscription)';
   }
 
   @override
@@ -1291,32 +1089,15 @@ class _$InAppPurchaseStateImpl implements _InAppPurchaseState {
         (other.runtimeType == runtimeType &&
             other is _$InAppPurchaseStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.inAppPurchase, inAppPurchase) ||
-                other.inAppPurchase == inAppPurchase) &&
-            const DeepCollectionEquality()
-                .equals(other._subscriptions, _subscriptions) &&
-            const DeepCollectionEquality()
-                .equals(other._activeSubscriptions, _activeSubscriptions) &&
-            (identical(other.purchaseStreamSubscription,
-                    purchaseStreamSubscription) ||
-                other.purchaseStreamSubscription ==
-                    purchaseStreamSubscription) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
-            const DeepCollectionEquality().equals(
-                other._subscriptionProductIds, _subscriptionProductIds));
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.activeSubscription, activeSubscription) ||
+                other.activeSubscription == activeSubscription));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      status,
-      inAppPurchase,
-      const DeepCollectionEquality().hash(_subscriptions),
-      const DeepCollectionEquality().hash(_activeSubscriptions),
-      purchaseStreamSubscription,
-      errorMessage,
-      const DeepCollectionEquality().hash(_subscriptionProductIds));
+  int get hashCode => Object.hash(runtimeType, status, error,
+      const DeepCollectionEquality().hash(_products), activeSubscription);
 
   /// Create a copy of InAppPurchaseState
   /// with the given fields replaced by the non-null parameter values.
@@ -1331,28 +1112,18 @@ class _$InAppPurchaseStateImpl implements _InAppPurchaseState {
 abstract class _InAppPurchaseState implements InAppPurchaseState {
   const factory _InAppPurchaseState(
       {final InAppPurchaseStatus status,
-      final InAppPurchase? inAppPurchase,
-      final List<ProductDetails> subscriptions,
-      final Set<String> activeSubscriptions,
-      final StreamSubscription<List<PurchaseDetails>>?
-          purchaseStreamSubscription,
-      final String? errorMessage,
-      final Set<String> subscriptionProductIds}) = _$InAppPurchaseStateImpl;
+      final String? error,
+      final List<ProductDetails> products,
+      final PurchaseDetails? activeSubscription}) = _$InAppPurchaseStateImpl;
 
   @override
   InAppPurchaseStatus get status;
   @override
-  InAppPurchase? get inAppPurchase;
+  String? get error;
   @override
-  List<ProductDetails> get subscriptions;
+  List<ProductDetails> get products;
   @override
-  Set<String> get activeSubscriptions;
-  @override
-  StreamSubscription<List<PurchaseDetails>>? get purchaseStreamSubscription;
-  @override
-  String? get errorMessage;
-  @override
-  Set<String> get subscriptionProductIds;
+  PurchaseDetails? get activeSubscription;
 
   /// Create a copy of InAppPurchaseState
   /// with the given fields replaced by the non-null parameter values.

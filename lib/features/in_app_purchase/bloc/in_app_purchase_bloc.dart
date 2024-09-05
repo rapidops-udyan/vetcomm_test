@@ -1,149 +1,148 @@
 import 'dart:async';
-
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:in_app_purchase_android/billing_client_wrappers.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
 part 'in_app_purchase_event.dart';
 part 'in_app_purchase_state.dart';
 part 'in_app_purchase_bloc.freezed.dart';
 
 class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
-  StreamSubscription<List<PurchaseDetails>>? _purchaseUpdateSubscription;
+  final InAppPurchase _iap = InAppPurchase.instance;
+  late StreamSubscription<List<PurchaseDetails>> _subscription;
 
   InAppPurchaseBloc() : super(const InAppPurchaseState()) {
-    on<_InitializeIAP>(_onInitializeIAP);
-    on<_FetchSubscriptions>(_onFetchSubscriptions);
-    on<_PurchaseSubscription>(_onPurchaseSubscription);
-    on<_RestoreSubscriptions>(_onRestoreSubscriptions);
-    on<_HandlePurchaseUpdate>(_onHandlePurchaseUpdate);
-    on<_UpdatePurchaseStatus>(_onUpdatePurchaseStatus);
+    on<_InAppPurchaseInitializeEvent>(_onInitialize);
+    on<_InAppPurchaseFetchProductsEvent>(_onFetchProducts);
+    on<_InAppPurchaseRestorePurchasesEvent>(_onRestorePurchases);
+    on<_InAppPurchaseBuyProductEvent>(_onBuyProduct);
+    on<_InAppPurchaseUpdatePurchasesEvent>(_onUpdatePurchases);
   }
 
-  Future<void> _onInitializeIAP(
-      _InitializeIAP event, Emitter<InAppPurchaseState> emit) async {
-    emit(state.copyWith(status: InAppPurchaseStatus.initializing));
-    final isAvailable = await InAppPurchase.instance.isAvailable();
-    if (!isAvailable) {
-      emit(state.copyWith(status: InAppPurchaseStatus.unavailable));
-      return;
-    }
-    final inAppPurchase = InAppPurchase.instance;
-    emit(state.copyWith(
-      status: InAppPurchaseStatus.available,
-      inAppPurchase: inAppPurchase,
-    ));
-
-    _purchaseUpdateSubscription = inAppPurchase.purchaseStream.listen(
-      (purchaseDetailsList) {
-        add(InAppPurchaseEvent.handlePurchaseUpdate(purchaseDetailsList));
-      },
-      onDone: () {
-        _purchaseUpdateSubscription?.cancel();
-        _purchaseUpdateSubscription = null;
-      },
-      onError: (error) {
-        add(InAppPurchaseEvent.updatePurchaseStatus(
-            InAppPurchaseStatus.error, error.toString()));
-      },
-    );
-
-    add(const InAppPurchaseEvent.fetchSubscriptions());
-  }
-
-  Future<void> _onFetchSubscriptions(
-      _FetchSubscriptions event, Emitter<InAppPurchaseState> emit) async {
+  Future<void> _onInitialize(_InAppPurchaseInitializeEvent event,
+      Emitter<InAppPurchaseState> emit) async {
     emit(state.copyWith(status: InAppPurchaseStatus.loading));
-    final productDetailResponse = await state.inAppPurchase!
-        .queryProductDetails(state.subscriptionProductIds);
-    if (productDetailResponse.error != null) {
+
+    final isAvailable = await _iap.isAvailable();
+    if (!isAvailable) {
       emit(state.copyWith(
           status: InAppPurchaseStatus.error,
-          errorMessage: productDetailResponse.error!.message));
+          error: 'In-App Purchase not available'));
       return;
     }
-    emit(state.copyWith(
-      status: InAppPurchaseStatus.loaded,
-      subscriptions: productDetailResponse.productDetails,
-    ));
+
+    _subscription = _iap.purchaseStream.listen(
+      (purchases) => add(InAppPurchaseEvent.updatePurchases(purchases)),
+      onDone: () => _subscription.cancel(),
+      onError: (error) => emit(state.copyWith(
+          status: InAppPurchaseStatus.error, error: error.toString())),
+    );
+
+    add(const InAppPurchaseEvent.fetchProducts());
+    add(const InAppPurchaseEvent.restorePurchases());
   }
 
-  Future<void> _onPurchaseSubscription(
-      _PurchaseSubscription event, Emitter<InAppPurchaseState> emit) async {
-    final purchaseParam = PurchaseParam(productDetails: event.productDetails);
+  Future<void> _onFetchProducts(_InAppPurchaseFetchProductsEvent event,
+      Emitter<InAppPurchaseState> emit) async {
+    final ProductDetailsResponse response =
+        await _iap.queryProductDetails(productIds);
+
+    if (response.error != null) {
+      emit(state.copyWith(
+          status: InAppPurchaseStatus.error, error: response.error!.message));
+    } else {
+      emit(state.copyWith(
+          products: response.productDetails,
+          status: InAppPurchaseStatus.ready));
+    }
+  }
+
+  Future<void> _onRestorePurchases(_InAppPurchaseRestorePurchasesEvent event,
+      Emitter<InAppPurchaseState> emit) async {
+    await _iap.restorePurchases();
+  }
+
+  Future<void> _onBuyProduct(_InAppPurchaseBuyProductEvent event,
+      Emitter<InAppPurchaseState> emit) async {
+    final PurchaseParam purchaseParam =
+        _buildPurchaseParam(event.product, event.oldPurchaseDetails);
+
     try {
-      final success = await state.inAppPurchase!
-          .buyNonConsumable(purchaseParam: purchaseParam);
+      final bool success =
+          await _iap.buyNonConsumable(purchaseParam: purchaseParam);
       if (!success) {
         emit(state.copyWith(
-            status: InAppPurchaseStatus.error,
-            errorMessage: 'Purchase failed'));
+            status: InAppPurchaseStatus.error, error: 'Purchase failed'));
       }
     } catch (e) {
       emit(state.copyWith(
-          status: InAppPurchaseStatus.error, errorMessage: e.toString()));
-    }
-  }
-
-  Future<void> _onRestoreSubscriptions(
-      _RestoreSubscriptions event, Emitter<InAppPurchaseState> emit) async {
-    emit(state.copyWith(status: InAppPurchaseStatus.loading));
-    try {
-      await state.inAppPurchase!.restorePurchases();
-      emit(state.copyWith(status: InAppPurchaseStatus.loaded));
-    } catch (e) {
-      emit(state.copyWith(
           status: InAppPurchaseStatus.error,
-          errorMessage: 'Failed to restore purchases: ${e.toString()}'));
+          error: 'Failed to make purchase: ${e.toString()}'));
     }
   }
 
-  Future<void> _onHandlePurchaseUpdate(
-      _HandlePurchaseUpdate event, Emitter<InAppPurchaseState> emit) async {
+  PurchaseParam _buildPurchaseParam(
+      ProductDetails product, PurchaseDetails? oldPurchaseDetails) {
+    if (oldPurchaseDetails != null && Platform.isAndroid) {
+      final oldPurchase = oldPurchaseDetails as GooglePlayPurchaseDetails;
+      return GooglePlayPurchaseParam(
+        productDetails: product,
+        changeSubscriptionParam: ChangeSubscriptionParam(
+          oldPurchaseDetails: oldPurchase,
+          replacementMode: ReplacementMode.withTimeProration,
+        ),
+      );
+    } else {
+      return PurchaseParam(productDetails: product);
+    }
+  }
+
+  Future<void> _onUpdatePurchases(_InAppPurchaseUpdatePurchasesEvent event,
+      Emitter<InAppPurchaseState> emit) async {
     for (var purchaseDetails in event.purchaseDetailsList) {
-      if (purchaseDetails.status == PurchaseStatus.purchased ||
-          purchaseDetails.status == PurchaseStatus.restored) {
-        final valid = await _verifyPurchase(purchaseDetails);
-        if (valid) {
-          emit(state.copyWith(
-            activeSubscriptions: {
-              ...state.activeSubscriptions,
-              purchaseDetails.productID
-            },
-            status: InAppPurchaseStatus.purchased,
-          ));
-        } else {
-          emit(state.copyWith(
-              status: InAppPurchaseStatus.error,
-              errorMessage: 'Invalid purchase'));
-        }
+      if (purchaseDetails.status == PurchaseStatus.pending) {
+        emit(state.copyWith(status: InAppPurchaseStatus.loading));
       } else if (purchaseDetails.status == PurchaseStatus.error) {
         emit(state.copyWith(
             status: InAppPurchaseStatus.error,
-            errorMessage: purchaseDetails.error!.message));
+            error: purchaseDetails.error!.message));
+      } else if (purchaseDetails.status == PurchaseStatus.purchased ||
+          purchaseDetails.status == PurchaseStatus.restored) {
+        final bool valid = await _verifyPurchase(purchaseDetails);
+        if (valid) {
+          emit(state.copyWith(
+            status: purchaseDetails.status == PurchaseStatus.restored
+                ? InAppPurchaseStatus.restored
+                : InAppPurchaseStatus.purchaseComplete,
+            activeSubscription: purchaseDetails,
+          ));
+        } else {
+          emit(state.copyWith(
+              status: InAppPurchaseStatus.error, error: 'Invalid purchase'));
+        }
+      } else if (purchaseDetails.status == PurchaseStatus.canceled) {
+        emit(state.copyWith(
+            status: InAppPurchaseStatus.error, error: 'Cancelled Purchase'));
       }
 
       if (purchaseDetails.pendingCompletePurchase) {
-        await state.inAppPurchase!.completePurchase(purchaseDetails);
+        await _iap.completePurchase(purchaseDetails);
       }
     }
-  }
 
-  void _onUpdatePurchaseStatus(
-      _UpdatePurchaseStatus event, Emitter<InAppPurchaseState> emit) {
-    emit(
-        state.copyWith(status: event.status, errorMessage: event.errorMessage));
+    emit(state.copyWith(status: InAppPurchaseStatus.ready));
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
-    // Implement your purchase verification logic here
-    // This could involve server-side verification
     return true;
   }
 
   @override
   Future<void> close() {
-    _purchaseUpdateSubscription?.cancel();
+    _subscription.cancel();
     return super.close();
   }
 }

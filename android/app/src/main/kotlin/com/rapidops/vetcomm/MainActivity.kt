@@ -1,4 +1,4 @@
-package com.example.vetcomm
+package com.rapidops.vetcomm
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
