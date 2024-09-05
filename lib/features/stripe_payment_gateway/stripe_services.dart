@@ -7,17 +7,17 @@ class StripeServices {
   static final StripeServices instance = StripeServices._();
 
   Dio dio = Dio();
+  var paymentIntent;
 
   Future<void> makePayment() async {
     try {
-      String? clientSecretKey =
-          await _createPaymentIntent(amount: 10, currency: 'usd');
-      if (clientSecretKey != null) {
+      paymentIntent = await _createPaymentIntent(amount: 10, currency: 'usd');
+      if (paymentIntent != null) {
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-            paymentIntentClientSecret: clientSecretKey,
-            merchantDisplayName: "Vet comm"
-          ),
+
+              paymentIntentClientSecret: paymentIntent['client_secret'],
+              merchantDisplayName: "Vet comm"),
         );
         await _processPayment();
       }
@@ -29,13 +29,25 @@ class StripeServices {
 
   Future<void> _processPayment()async{
     try{
-      await Stripe.instance.presentPaymentSheet();
-    }catch(e){
+      await Stripe.instance.presentPaymentSheet().then(
+        (value) {
+          print('----------> VALUE AFTER PAYMENT SHEET: $value}');
+          paymentIntent = null;
+        },
+      ).onError((error, stackTrace) {
+        print('INSIDE THE CATCH BLOCK OF THE PAYMENT SHEET DISPLAY');
+        print('------> ERROR : \n  $error');
+        print('----> STACK TRACE : \n $stackTrace');
+        throw Exception(error);
+      });
+    } on StripeException catch (e) {
+      print(' STRIPE Error is:---> $e');
+    } catch (e) {
       print('INSIDE THE EXCEPTION BLOC');
     }
   }
 
-  Future<String?> _createPaymentIntent({
+  Future<Map<String, dynamic>?> _createPaymentIntent({
     required int amount,
     required String currency,
   }) async {
@@ -57,7 +69,7 @@ class StripeServices {
         ),
       );
       if (response.data != null) {
-        return response.data["client_secret"];
+        return response.data;
       }
       return null;
     } catch (e) {
@@ -68,7 +80,6 @@ class StripeServices {
     }
     return null;
   }
-
   int calculateAmount(int amount) {
     int result = amount * 100;
     return result;
