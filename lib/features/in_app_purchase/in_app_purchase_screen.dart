@@ -11,41 +11,39 @@ class InAppPurchaseScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           InAppPurchaseBloc()..add(const InAppPurchaseEvent.initialize()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('In-App Purchase'),
-          backgroundColor: Colors.deepPurple,
-          foregroundColor: Colors.white,
-        ),
-        body: BlocConsumer<InAppPurchaseBloc, InAppPurchaseState>(
-          listener: (context, state) {
-            print(state.error);
-            if (state.status == InAppPurchaseStatus.error) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error ?? 'An error occurred')));
-            } else if (state.status == InAppPurchaseStatus.purchaseComplete) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Purchase successful')));
-            } else if (state.status == InAppPurchaseStatus.restored) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Subscription Restored')));
-            }
-          },
-          builder: (context, state) {
-            switch (state.status) {
-              case InAppPurchaseStatus.loading:
-                return const Center(child: CircularProgressIndicator());
-              case InAppPurchaseStatus.ready:
-              case InAppPurchaseStatus.purchaseComplete:
-                return _buildSubscriptionList(context, state);
-              case InAppPurchaseStatus.error:
-                return Center(child: Text(state.error ?? 'An error occurred'));
-              default:
-                return const SizedBox.shrink();
-            }
-          },
-        ),
-      ),
+      child: Builder(builder: (context) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('In-App Purchase')),
+          body: BlocConsumer<InAppPurchaseBloc, InAppPurchaseState>(
+            listener: (context, state) {
+              if (state.status == InAppPurchaseStatus.error) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(state.error ?? 'An error occurred')));
+              } else if (state.status == InAppPurchaseStatus.purchaseComplete) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Purchase successful')));
+              } else if (state.status == InAppPurchaseStatus.restored) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Subscription Restored')));
+              }
+            },
+            builder: (context, state) {
+              switch (state.status) {
+                case InAppPurchaseStatus.loading:
+                  return const Center(child: CircularProgressIndicator());
+                case InAppPurchaseStatus.ready:
+                case InAppPurchaseStatus.purchaseComplete:
+                  return _buildSubscriptionList(context, state);
+                case InAppPurchaseStatus.error:
+                  return Center(
+                      child: Text(state.error ?? 'An error occurred'));
+                default:
+                  return const SizedBox.shrink();
+              }
+            },
+          ),
+        );
+      }),
     );
   }
 

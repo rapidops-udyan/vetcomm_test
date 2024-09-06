@@ -125,15 +125,15 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
         }
       } else if (purchaseDetails.status == PurchaseStatus.canceled) {
         emit(state.copyWith(
-            status: InAppPurchaseStatus.error, error: 'Cancelled Purchase'));
+            status: InAppPurchaseStatus.error, error: 'Purchase Cancelled'));
       }
 
       if (purchaseDetails.pendingCompletePurchase) {
         await _iap.completePurchase(purchaseDetails);
+        emit(state.copyWith(status: InAppPurchaseStatus.ready));
       }
     }
 
-    emit(state.copyWith(status: InAppPurchaseStatus.ready));
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
