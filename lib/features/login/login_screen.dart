@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -13,10 +14,22 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Center(
         child: TextButton.icon(
-          onPressed: () {},
+          onPressed: googleSignIn,
           label: const Text('Sign Up with Google'),
         ),
       ),
     );
+  }
+
+  void googleSignIn() async {
+    GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: ['android'],
+    );
+    try {
+      var result = await googleSignIn.signIn();
+      print(result);
+    } catch (error) {
+      print(error);
+    }
   }
 }

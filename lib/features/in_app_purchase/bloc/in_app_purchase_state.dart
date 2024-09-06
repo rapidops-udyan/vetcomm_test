@@ -6,6 +6,7 @@ enum InAppPurchaseStatus {
   ready,
   restored,
   purchaseComplete,
+  cancelled,
   error,
 }
 
