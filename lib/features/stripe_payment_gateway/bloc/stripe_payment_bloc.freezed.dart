@@ -19,59 +19,39 @@ mixin _$StripePaymentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchClientKey,
     required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
     TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchClientKey,
     TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
     required TResult Function(_StripePaymentInitializePayment value)
         initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,10 +120,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchClientKey,
     required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
   }) {
     return started();
   }
@@ -152,10 +129,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
     TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
   }) {
     return started?.call();
   }
@@ -164,10 +138,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchClientKey,
     TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -180,13 +151,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
     required TResult Function(_StripePaymentInitializePayment value)
         initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
   }) {
     return started(this);
   }
@@ -195,10 +161,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
   }) {
     return started?.call(this);
   }
@@ -207,10 +170,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -222,138 +182,6 @@ class _$StartedImpl implements _Started {
 
 abstract class _Started implements StripePaymentEvent {
   const factory _Started() = _$StartedImpl;
-}
-
-/// @nodoc
-abstract class _$$StripePaymentFetchClientKeyImplCopyWith<$Res> {
-  factory _$$StripePaymentFetchClientKeyImplCopyWith(
-          _$StripePaymentFetchClientKeyImpl value,
-          $Res Function(_$StripePaymentFetchClientKeyImpl) then) =
-      __$$StripePaymentFetchClientKeyImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StripePaymentFetchClientKeyImplCopyWithImpl<$Res>
-    extends _$StripePaymentEventCopyWithImpl<$Res,
-        _$StripePaymentFetchClientKeyImpl>
-    implements _$$StripePaymentFetchClientKeyImplCopyWith<$Res> {
-  __$$StripePaymentFetchClientKeyImplCopyWithImpl(
-      _$StripePaymentFetchClientKeyImpl _value,
-      $Res Function(_$StripePaymentFetchClientKeyImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of StripePaymentEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StripePaymentFetchClientKeyImpl
-    implements _StripePaymentFetchClientKey {
-  const _$StripePaymentFetchClientKeyImpl();
-
-  @override
-  String toString() {
-    return 'StripePaymentEvent.fetchClientKey()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StripePaymentFetchClientKeyImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() fetchClientKey,
-    required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
-  }) {
-    return fetchClientKey();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
-    TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
-  }) {
-    return fetchClientKey?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchClientKey,
-    TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (fetchClientKey != null) {
-      return fetchClientKey();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
-    required TResult Function(_StripePaymentInitializePayment value)
-        initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
-  }) {
-    return fetchClientKey(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
-  }) {
-    return fetchClientKey?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (fetchClientKey != null) {
-      return fetchClientKey(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StripePaymentFetchClientKey implements StripePaymentEvent {
-  const factory _StripePaymentFetchClientKey() =
-      _$StripePaymentFetchClientKeyImpl;
 }
 
 /// @nodoc
@@ -442,10 +270,7 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() fetchClientKey,
     required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
   }) {
     return initializePayment(amount, currency);
   }
@@ -454,10 +279,7 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
     TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
   }) {
     return initializePayment?.call(amount, currency);
   }
@@ -466,10 +288,7 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? fetchClientKey,
     TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
     required TResult orElse(),
   }) {
     if (initializePayment != null) {
@@ -482,13 +301,8 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
     required TResult Function(_StripePaymentInitializePayment value)
         initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
   }) {
     return initializePayment(this);
   }
@@ -497,10 +311,7 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
   }) {
     return initializePayment?.call(this);
   }
@@ -509,10 +320,7 @@ class _$StripePaymentInitializePaymentImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
     TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
     required TResult orElse(),
   }) {
     if (initializePayment != null) {
@@ -536,268 +344,6 @@ abstract class _StripePaymentInitializePayment implements StripePaymentEvent {
   _$$StripePaymentInitializePaymentImplCopyWith<
           _$StripePaymentInitializePaymentImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StripePaymentCompletionEventImplCopyWith<$Res> {
-  factory _$$StripePaymentCompletionEventImplCopyWith(
-          _$StripePaymentCompletionEventImpl value,
-          $Res Function(_$StripePaymentCompletionEventImpl) then) =
-      __$$StripePaymentCompletionEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StripePaymentCompletionEventImplCopyWithImpl<$Res>
-    extends _$StripePaymentEventCopyWithImpl<$Res,
-        _$StripePaymentCompletionEventImpl>
-    implements _$$StripePaymentCompletionEventImplCopyWith<$Res> {
-  __$$StripePaymentCompletionEventImplCopyWithImpl(
-      _$StripePaymentCompletionEventImpl _value,
-      $Res Function(_$StripePaymentCompletionEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of StripePaymentEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StripePaymentCompletionEventImpl
-    implements _StripePaymentCompletionEvent {
-  const _$StripePaymentCompletionEventImpl();
-
-  @override
-  String toString() {
-    return 'StripePaymentEvent.paymentCompletion()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StripePaymentCompletionEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() fetchClientKey,
-    required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
-  }) {
-    return paymentCompletion();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
-    TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
-  }) {
-    return paymentCompletion?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchClientKey,
-    TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (paymentCompletion != null) {
-      return paymentCompletion();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
-    required TResult Function(_StripePaymentInitializePayment value)
-        initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
-  }) {
-    return paymentCompletion(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
-  }) {
-    return paymentCompletion?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (paymentCompletion != null) {
-      return paymentCompletion(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StripePaymentCompletionEvent implements StripePaymentEvent {
-  const factory _StripePaymentCompletionEvent() =
-      _$StripePaymentCompletionEventImpl;
-}
-
-/// @nodoc
-abstract class _$$StripepaymentFailedEventImplCopyWith<$Res> {
-  factory _$$StripepaymentFailedEventImplCopyWith(
-          _$StripepaymentFailedEventImpl value,
-          $Res Function(_$StripepaymentFailedEventImpl) then) =
-      __$$StripepaymentFailedEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StripepaymentFailedEventImplCopyWithImpl<$Res>
-    extends _$StripePaymentEventCopyWithImpl<$Res,
-        _$StripepaymentFailedEventImpl>
-    implements _$$StripepaymentFailedEventImplCopyWith<$Res> {
-  __$$StripepaymentFailedEventImplCopyWithImpl(
-      _$StripepaymentFailedEventImpl _value,
-      $Res Function(_$StripepaymentFailedEventImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of StripePaymentEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StripepaymentFailedEventImpl implements _StripepaymentFailedEvent {
-  const _$StripepaymentFailedEventImpl();
-
-  @override
-  String toString() {
-    return 'StripePaymentEvent.paymentFailed()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StripepaymentFailedEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() fetchClientKey,
-    required TResult Function(double amount, String currency) initializePayment,
-    required TResult Function() paymentCompletion,
-    required TResult Function() paymentFailed,
-  }) {
-    return paymentFailed();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? fetchClientKey,
-    TResult? Function(double amount, String currency)? initializePayment,
-    TResult? Function()? paymentCompletion,
-    TResult? Function()? paymentFailed,
-  }) {
-    return paymentFailed?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? fetchClientKey,
-    TResult Function(double amount, String currency)? initializePayment,
-    TResult Function()? paymentCompletion,
-    TResult Function()? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (paymentFailed != null) {
-      return paymentFailed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_StripePaymentFetchClientKey value)
-        fetchClientKey,
-    required TResult Function(_StripePaymentInitializePayment value)
-        initializePayment,
-    required TResult Function(_StripePaymentCompletionEvent value)
-        paymentCompletion,
-    required TResult Function(_StripepaymentFailedEvent value) paymentFailed,
-  }) {
-    return paymentFailed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult? Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult? Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult? Function(_StripepaymentFailedEvent value)? paymentFailed,
-  }) {
-    return paymentFailed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_StripePaymentFetchClientKey value)? fetchClientKey,
-    TResult Function(_StripePaymentInitializePayment value)? initializePayment,
-    TResult Function(_StripePaymentCompletionEvent value)? paymentCompletion,
-    TResult Function(_StripepaymentFailedEvent value)? paymentFailed,
-    required TResult orElse(),
-  }) {
-    if (paymentFailed != null) {
-      return paymentFailed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StripepaymentFailedEvent implements StripePaymentEvent {
-  const factory _StripepaymentFailedEvent() = _$StripepaymentFailedEventImpl;
 }
 
 /// @nodoc
@@ -830,25 +376,25 @@ mixin _$StripePaymentState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_StripePaymentLoadingState value) loading,
-    required TResult Function(_StripePaymentErrorState value) error,
-    required TResult Function(_StripePaymentSuccessState value) success,
+    required TResult Function(StripePaymentLoadingState value) loading,
+    required TResult Function(StripePaymentErrorState value) error,
+    required TResult Function(StripePaymentSuccessState value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_StripePaymentLoadingState value)? loading,
-    TResult? Function(_StripePaymentErrorState value)? error,
-    TResult? Function(_StripePaymentSuccessState value)? success,
+    TResult? Function(StripePaymentLoadingState value)? loading,
+    TResult? Function(StripePaymentErrorState value)? error,
+    TResult? Function(StripePaymentSuccessState value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_StripePaymentLoadingState value)? loading,
-    TResult Function(_StripePaymentErrorState value)? error,
-    TResult Function(_StripePaymentSuccessState value)? success,
+    TResult Function(StripePaymentLoadingState value)? loading,
+    TResult Function(StripePaymentErrorState value)? error,
+    TResult Function(StripePaymentSuccessState value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -954,9 +500,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_StripePaymentLoadingState value) loading,
-    required TResult Function(_StripePaymentErrorState value) error,
-    required TResult Function(_StripePaymentSuccessState value) success,
+    required TResult Function(StripePaymentLoadingState value) loading,
+    required TResult Function(StripePaymentErrorState value) error,
+    required TResult Function(StripePaymentSuccessState value) success,
   }) {
     return initial(this);
   }
@@ -965,9 +511,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_StripePaymentLoadingState value)? loading,
-    TResult? Function(_StripePaymentErrorState value)? error,
-    TResult? Function(_StripePaymentSuccessState value)? success,
+    TResult? Function(StripePaymentLoadingState value)? loading,
+    TResult? Function(StripePaymentErrorState value)? error,
+    TResult? Function(StripePaymentSuccessState value)? success,
   }) {
     return initial?.call(this);
   }
@@ -976,9 +522,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_StripePaymentLoadingState value)? loading,
-    TResult Function(_StripePaymentErrorState value)? error,
-    TResult Function(_StripePaymentSuccessState value)? success,
+    TResult Function(StripePaymentLoadingState value)? loading,
+    TResult Function(StripePaymentErrorState value)? error,
+    TResult Function(StripePaymentSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1016,7 +562,7 @@ class __$$StripePaymentLoadingStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StripePaymentLoadingStateImpl implements _StripePaymentLoadingState {
+class _$StripePaymentLoadingStateImpl implements StripePaymentLoadingState {
   const _$StripePaymentLoadingStateImpl();
 
   @override
@@ -1075,9 +621,9 @@ class _$StripePaymentLoadingStateImpl implements _StripePaymentLoadingState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_StripePaymentLoadingState value) loading,
-    required TResult Function(_StripePaymentErrorState value) error,
-    required TResult Function(_StripePaymentSuccessState value) success,
+    required TResult Function(StripePaymentLoadingState value) loading,
+    required TResult Function(StripePaymentErrorState value) error,
+    required TResult Function(StripePaymentSuccessState value) success,
   }) {
     return loading(this);
   }
@@ -1086,9 +632,9 @@ class _$StripePaymentLoadingStateImpl implements _StripePaymentLoadingState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_StripePaymentLoadingState value)? loading,
-    TResult? Function(_StripePaymentErrorState value)? error,
-    TResult? Function(_StripePaymentSuccessState value)? success,
+    TResult? Function(StripePaymentLoadingState value)? loading,
+    TResult? Function(StripePaymentErrorState value)? error,
+    TResult? Function(StripePaymentSuccessState value)? success,
   }) {
     return loading?.call(this);
   }
@@ -1097,9 +643,9 @@ class _$StripePaymentLoadingStateImpl implements _StripePaymentLoadingState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_StripePaymentLoadingState value)? loading,
-    TResult Function(_StripePaymentErrorState value)? error,
-    TResult Function(_StripePaymentSuccessState value)? success,
+    TResult Function(StripePaymentLoadingState value)? loading,
+    TResult Function(StripePaymentErrorState value)? error,
+    TResult Function(StripePaymentSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1109,8 +655,8 @@ class _$StripePaymentLoadingStateImpl implements _StripePaymentLoadingState {
   }
 }
 
-abstract class _StripePaymentLoadingState implements StripePaymentState {
-  const factory _StripePaymentLoadingState() = _$StripePaymentLoadingStateImpl;
+abstract class StripePaymentLoadingState implements StripePaymentState {
+  const factory StripePaymentLoadingState() = _$StripePaymentLoadingStateImpl;
 }
 
 /// @nodoc
@@ -1151,7 +697,7 @@ class __$$StripePaymentErrorStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StripePaymentErrorStateImpl implements _StripePaymentErrorState {
+class _$StripePaymentErrorStateImpl implements StripePaymentErrorState {
   const _$StripePaymentErrorStateImpl({this.errorMessage = ""});
 
   @override
@@ -1225,9 +771,9 @@ class _$StripePaymentErrorStateImpl implements _StripePaymentErrorState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_StripePaymentLoadingState value) loading,
-    required TResult Function(_StripePaymentErrorState value) error,
-    required TResult Function(_StripePaymentSuccessState value) success,
+    required TResult Function(StripePaymentLoadingState value) loading,
+    required TResult Function(StripePaymentErrorState value) error,
+    required TResult Function(StripePaymentSuccessState value) success,
   }) {
     return error(this);
   }
@@ -1236,9 +782,9 @@ class _$StripePaymentErrorStateImpl implements _StripePaymentErrorState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_StripePaymentLoadingState value)? loading,
-    TResult? Function(_StripePaymentErrorState value)? error,
-    TResult? Function(_StripePaymentSuccessState value)? success,
+    TResult? Function(StripePaymentLoadingState value)? loading,
+    TResult? Function(StripePaymentErrorState value)? error,
+    TResult? Function(StripePaymentSuccessState value)? success,
   }) {
     return error?.call(this);
   }
@@ -1247,9 +793,9 @@ class _$StripePaymentErrorStateImpl implements _StripePaymentErrorState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_StripePaymentLoadingState value)? loading,
-    TResult Function(_StripePaymentErrorState value)? error,
-    TResult Function(_StripePaymentSuccessState value)? success,
+    TResult Function(StripePaymentLoadingState value)? loading,
+    TResult Function(StripePaymentErrorState value)? error,
+    TResult Function(StripePaymentSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1259,8 +805,8 @@ class _$StripePaymentErrorStateImpl implements _StripePaymentErrorState {
   }
 }
 
-abstract class _StripePaymentErrorState implements StripePaymentState {
-  const factory _StripePaymentErrorState({final String errorMessage}) =
+abstract class StripePaymentErrorState implements StripePaymentState {
+  const factory StripePaymentErrorState({final String errorMessage}) =
       _$StripePaymentErrorStateImpl;
 
   String get errorMessage;
@@ -1296,7 +842,7 @@ class __$$StripePaymentSuccessStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StripePaymentSuccessStateImpl implements _StripePaymentSuccessState {
+class _$StripePaymentSuccessStateImpl implements StripePaymentSuccessState {
   const _$StripePaymentSuccessStateImpl();
 
   @override
@@ -1355,9 +901,9 @@ class _$StripePaymentSuccessStateImpl implements _StripePaymentSuccessState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_StripePaymentLoadingState value) loading,
-    required TResult Function(_StripePaymentErrorState value) error,
-    required TResult Function(_StripePaymentSuccessState value) success,
+    required TResult Function(StripePaymentLoadingState value) loading,
+    required TResult Function(StripePaymentErrorState value) error,
+    required TResult Function(StripePaymentSuccessState value) success,
   }) {
     return success(this);
   }
@@ -1366,9 +912,9 @@ class _$StripePaymentSuccessStateImpl implements _StripePaymentSuccessState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_StripePaymentLoadingState value)? loading,
-    TResult? Function(_StripePaymentErrorState value)? error,
-    TResult? Function(_StripePaymentSuccessState value)? success,
+    TResult? Function(StripePaymentLoadingState value)? loading,
+    TResult? Function(StripePaymentErrorState value)? error,
+    TResult? Function(StripePaymentSuccessState value)? success,
   }) {
     return success?.call(this);
   }
@@ -1377,9 +923,9 @@ class _$StripePaymentSuccessStateImpl implements _StripePaymentSuccessState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_StripePaymentLoadingState value)? loading,
-    TResult Function(_StripePaymentErrorState value)? error,
-    TResult Function(_StripePaymentSuccessState value)? success,
+    TResult Function(StripePaymentLoadingState value)? loading,
+    TResult Function(StripePaymentErrorState value)? error,
+    TResult Function(StripePaymentSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1389,6 +935,6 @@ class _$StripePaymentSuccessStateImpl implements _StripePaymentSuccessState {
   }
 }
 
-abstract class _StripePaymentSuccessState implements StripePaymentState {
-  const factory _StripePaymentSuccessState() = _$StripePaymentSuccessStateImpl;
+abstract class StripePaymentSuccessState implements StripePaymentState {
+  const factory StripePaymentSuccessState() = _$StripePaymentSuccessStateImpl;
 }

@@ -11,20 +11,26 @@ part 'stripe_payment_state.dart';
 class StripePaymentBloc extends Bloc<StripePaymentEvent, StripePaymentState> {
   StripePaymentBloc() : super(const StripePaymentState.initial()) {
     on<_StripePaymentInitializePayment>(_onInitializePyamentEvent);
-    on<_StripePaymentCompletionEvent>(_onCompletionPaymentEvent);
-    on<_StripepaymentFailedEvent>(_onPaymentFailedEvent);
   }
 
   Future<void> _onInitializePyamentEvent(_StripePaymentInitializePayment event,
       Emitter<StripePaymentState> emit) async {
-    await StripeServices.instance.makePayment();
+    try {
+      emit(const StripePaymentState.loading());
+      await StripeServices.instance
+          .makePayment(amount: event.amount, currency: event.currency);
+      print('-----> AFTER STRIPE PAYMENT SERVICE');
+      emit(const StripePaymentState.success());
+    } catch (e) {
+      emit(StripePaymentState.error(errorMessage: e.toString()));
+    }
   }
 
-  FutureOr<void> _onCompletionPaymentEvent(
-      _StripePaymentCompletionEvent event, Emitter<StripePaymentState> emit) {}
-
-  FutureOr<void> _onPaymentFailedEvent(
-      _StripepaymentFailedEvent event, Emitter<StripePaymentState> emit) {}
+  // FutureOr<void> _onCompletionPaymentEvent(
+  //     _StripePaymentCompletionEvent event, Emitter<StripePaymentState> emit) {}
+  //
+  // FutureOr<void> _onPaymentFailedEvent(
+  //     _StripepaymentFailedEvent event, Emitter<StripePaymentState> emit) {}
 }
 
 String stripePublishableKey =

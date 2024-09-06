@@ -9,21 +9,33 @@ class StripeServices {
   Dio dio = Dio();
   var paymentIntent;
 
-  Future<void> makePayment() async {
+  Future<void> makePayment({
+    required double amount,
+    required String currency,
+  }) async {
     try {
-      paymentIntent = await _createPaymentIntent(amount: 10, currency: 'usd');
+      paymentIntent = await _createPaymentIntent(
+        amount: amount,
+        currency: currency,
+      );
       if (paymentIntent != null) {
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-
-              paymentIntentClientSecret: paymentIntent['client_secret'],
-              merchantDisplayName: "Vet comm"),
+            paymentIntentClientSecret: paymentIntent['client_secret'],
+            merchantDisplayName: "Vet comm",
+            googlePay: const PaymentSheetGooglePay(
+                merchantCountryCode: 'US',
+                testEnv: true,
+                currencyCode: 'USD',
+                buttonType: PlatformButtonType.pay),
+          ),
         );
         await _processPayment();
       }
       return;
     } catch (e) {
       print('----> EXCEPTION OCCURRED - $e');
+      throw Exception(e);
     }
   }
 
@@ -42,19 +54,21 @@ class StripeServices {
       });
     } on StripeException catch (e) {
       print(' STRIPE Error is:---> $e');
+      throw Exception(e);
     } catch (e) {
       print('INSIDE THE EXCEPTION BLOC');
+      throw Exception(e);
     }
   }
 
   Future<Map<String, dynamic>?> _createPaymentIntent({
-    required int amount,
+    required double amount,
     required String currency,
   }) async {
     try {
       Map<String, dynamic> data = {
         "amount": calculateAmount(amount),
-        "currency": currency,
+        "currency": 'usd',
       };
 
       var response = await dio.post(
@@ -73,15 +87,17 @@ class StripeServices {
       }
       return null;
     } catch (e) {
-      DioException err = e as DioException;
-      print('-----> Response is  : ${err.response}');
+      // DioException err = e as DioException;
+      // print('-----> Response is  : ${err.response}');
 
       print('-----> EXCEPTION OCCURED WHILE PAYMENT INTENT CREATION : ${e}');
+      throw Exception(e);
     }
     return null;
   }
-  int calculateAmount(int amount) {
-    int result = amount * 100;
+
+  int calculateAmount(double amount) {
+    int result = (amount * 100).toInt();
     return result;
   }
 }
