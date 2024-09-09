@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:vetcomm/features/login/goole_sign_in.dart';
+
+import 'goole_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,21 +40,33 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (signIn != null) ...[
+                // Display placeholder if photoUrl is null or empty
                 CircleAvatar(
-                  backgroundImage: NetworkImage(signIn?.photoUrl ?? ""),
+                  backgroundImage:
+                      signIn?.photoUrl != null && signIn!.photoUrl!.isNotEmpty
+                          ? NetworkImage(signIn!.photoUrl!)
+                          : const AssetImage('assets/images/placeholder.png')
+                              as ImageProvider,
+                  // Use a local placeholder image
                   radius: 50,
                 ),
                 const SizedBox(height: 20),
+                // Display default text if displayName is null or empty
                 Text(
-                  signIn?.displayName ?? "",
+                  signIn?.displayName?.isNotEmpty == true
+                      ? signIn!.displayName!
+                      : 'No display name',
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 8),
+                // Display default text if email is null or empty
                 Text(
-                  signIn?.email ?? "",
+                  signIn?.email.isNotEmpty == true
+                      ? signIn!.email
+                      : 'No email available',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
