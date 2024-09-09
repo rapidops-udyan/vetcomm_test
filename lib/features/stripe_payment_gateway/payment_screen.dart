@@ -40,28 +40,44 @@ class _PaymentScreenState extends State<PaymentScreen> {
               } else if (state is StripePaymentErrorState) {
                 showDialog(
                   context: context,
-                  builder: (context) => const Dialog(
-                    child: Text('Payment failed'),
+                builder: (context) => const Dialog(
+                  backgroundColor: Colors.red,
+                  child: Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.red,
+                          child: Icon(
+                            Icons.cancel_outlined,
+                            size: 30,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Payment failed',
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                );
-              }
-            },
+                ),
+              );
+            }
+          },
             child: Scaffold(
               appBar: AppBar(
                 title: const Text('Checkout Screen'),
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.deepPurple,
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add_box),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.navigate_next),
-                  ),
-
-                ],
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 15),
