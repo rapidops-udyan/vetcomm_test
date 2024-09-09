@@ -40,15 +40,28 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (signIn != null) ...[
-                // Display placeholder if photoUrl is null or empty
+                // Show profile image if available, otherwise show the first letter of the display name
                 CircleAvatar(
-                  backgroundImage:
-                      signIn?.photoUrl != null && signIn!.photoUrl!.isNotEmpty
-                          ? NetworkImage(signIn!.photoUrl!)
-                          : const AssetImage('assets/images/placeholder.png')
-                              as ImageProvider,
-                  // Use a local placeholder image
                   radius: 50,
+                  backgroundImage:
+                      (signIn?.photoUrl != null && signIn!.photoUrl!.isNotEmpty)
+                          ? NetworkImage(signIn!.photoUrl!)
+                          : null,
+                  backgroundColor: Colors
+                      .deepPurple, // No image if photoUrl is null or empty
+                  child: (signIn?.photoUrl == null || signIn!.photoUrl!.isEmpty)
+                      ? Text(
+                          signIn?.displayName?.isNotEmpty == true
+                              ? signIn!.displayName![0]
+                                  .toUpperCase() // First letter of name
+                              : '?', // Fallback if displayName is also null or empty
+                          style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )
+                      : null, // Background color for avatar when no image
                 ),
                 const SizedBox(height: 20),
                 // Display default text if displayName is null or empty
