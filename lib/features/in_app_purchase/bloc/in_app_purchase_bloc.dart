@@ -1,14 +1,16 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
+part 'in_app_purchase_bloc.freezed.dart';
 part 'in_app_purchase_event.dart';
 part 'in_app_purchase_state.dart';
-part 'in_app_purchase_bloc.freezed.dart';
 
 class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
   final InAppPurchase _iap = InAppPurchase.instance;
@@ -137,6 +139,8 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
+    log(
+        '${purchaseDetails.verificationData.localVerificationData}:${purchaseDetails.verificationData.serverVerificationData}:${purchaseDetails.verificationData.source}');
     return true;
   }
 
