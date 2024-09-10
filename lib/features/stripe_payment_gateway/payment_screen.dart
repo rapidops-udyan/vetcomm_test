@@ -32,11 +32,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
               if (state is StripePaymentSuccessState) {
                 print('INSIDE THE PAYMENT SUCCESS STATE');
 
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PaymentSuccessScreen(),
-                    ));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => const PaymentSuccessScreen(),
+                //     ));
               } else if (state is StripePaymentErrorState) {
                 showDialog(
                   context: context,

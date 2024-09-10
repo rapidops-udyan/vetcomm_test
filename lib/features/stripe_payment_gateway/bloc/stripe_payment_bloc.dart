@@ -26,11 +26,6 @@ class StripePaymentBloc extends Bloc<StripePaymentEvent, StripePaymentState> {
     }
   }
 
-  // FutureOr<void> _onCompletionPaymentEvent(
-  //     _StripePaymentCompletionEvent event, Emitter<StripePaymentState> emit) {}
-  //
-  // FutureOr<void> _onPaymentFailedEvent(
-  //     _StripepaymentFailedEvent event, Emitter<StripePaymentState> emit) {}
 }
 
 String stripePublishableKey =

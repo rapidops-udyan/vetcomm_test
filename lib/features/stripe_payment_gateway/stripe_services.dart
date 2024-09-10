@@ -19,6 +19,7 @@ class StripeServices {
         currency: currency,
       );
       if (paymentIntent != null) {
+        print('---------> INSIDE THE PAYMENT INTENT ');
         await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
             paymentIntentClientSecret: paymentIntent['client_secret'],
@@ -26,8 +27,7 @@ class StripeServices {
             googlePay: const PaymentSheetGooglePay(
                 merchantCountryCode: 'US',
                 testEnv: true,
-                currencyCode: 'USD',
-                buttonType: PlatformButtonType.pay),
+            ),
           ),
         );
         await _processPayment();
@@ -41,17 +41,27 @@ class StripeServices {
 
   Future<void> _processPayment()async{
     try{
-      await Stripe.instance.presentPaymentSheet().then(
-        (value) {
-          print('----------> VALUE AFTER PAYMENT SHEET: $value}');
-          paymentIntent = null;
-        },
-      ).onError((error, stackTrace) {
-        print('INSIDE THE CATCH BLOCK OF THE PAYMENT SHEET DISPLAY');
-        print('------> ERROR : \n  $error');
-        print('----> STACK TRACE : \n $stackTrace');
-        throw Exception(error);
-      });
+      print('-------> Payment is processing');
+
+      var response = await Stripe.instance.presentPaymentSheet();
+
+      if (response != null) {
+        print('image is ${response.image}');
+        print('----------> RESPONSE FROM STRIPE : ${response.toJson()}');
+      } else {
+        print('---------> INSIDE THE STRIPE ELSE BLOC <--------');
+      }
+      // then(
+      //   (value) {
+      //     print('----------> VALUE AFTER PAYMENT SHEET: $value}');
+      //     paymentIntent = null;
+      //   },
+      // ).onError((error, stackTrace) {
+      //   print('INSIDE THE CATCH BLOCK OF THE PAYMENT SHEET DISPLAY');
+      //   print('------> ERROR : \n  $error');
+      //   print('----> STACK TRACE : \n $stackTrace');
+      //   throw Exception(error);
+      // });
     } on StripeException catch (e) {
       print(' STRIPE Error is:---> $e');
       throw Exception(e);
