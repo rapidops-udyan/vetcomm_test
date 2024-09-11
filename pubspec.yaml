@@ -14,6 +14,9 @@ dependencies:
   in_app_purchase: ^3.2.0
   json_annotation: ^4.9.0
 
+#  facebook sign in
+  flutter_facebook_auth: ^7.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

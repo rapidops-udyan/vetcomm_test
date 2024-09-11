@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vetcomm/features/in_app_purchase/in_app_purchase_screen.dart';
+
+import 'facebook_login.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,7 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: InAppPurchaseScreen(),
+      home: FacebookLogin(),
     );
   }
 }
