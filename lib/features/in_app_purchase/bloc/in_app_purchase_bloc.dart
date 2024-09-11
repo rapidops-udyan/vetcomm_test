@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
+import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
 
 part 'in_app_purchase_bloc.freezed.dart';
 part 'in_app_purchase_event.dart';
@@ -29,6 +30,11 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
     emit(state.copyWith(status: InAppPurchaseStatus.loading));
 
     final isAvailable = await _iap.isAvailable();
+    if (Platform.isIOS) {
+      final iosPlatformAddition =
+          _iap.getPlatformAddition<InAppPurchaseStoreKitPlatformAddition>();
+      await iosPlatformAddition.setDelegate(PaymentQueueDelegate());
+    }
     if (!isAvailable) {
       emit(state.copyWith(
           status: InAppPurchaseStatus.error,
@@ -88,17 +94,26 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
 
   PurchaseParam _buildPurchaseParam(
       ProductDetails product, PurchaseDetails? oldPurchaseDetails) {
-    if (oldPurchaseDetails != null && Platform.isAndroid) {
-      final oldPurchase = oldPurchaseDetails as GooglePlayPurchaseDetails;
-      return GooglePlayPurchaseParam(
+    if (Platform.isAndroid) {
+      if (oldPurchaseDetails != null) {
+        final oldPurchase = oldPurchaseDetails as GooglePlayPurchaseDetails;
+        return GooglePlayPurchaseParam(
+          productDetails: product,
+          changeSubscriptionParam: ChangeSubscriptionParam(
+            oldPurchaseDetails: oldPurchase,
+            replacementMode: ReplacementMode.withTimeProration,
+          ),
+        );
+      } else {
+        return GooglePlayPurchaseParam(productDetails: product);
+      }
+    } else if (Platform.isIOS) {
+      return PurchaseParam(
         productDetails: product,
-        changeSubscriptionParam: ChangeSubscriptionParam(
-          oldPurchaseDetails: oldPurchase,
-          replacementMode: ReplacementMode.withTimeProration,
-        ),
+        applicationUserName: null,
       );
     } else {
-      return PurchaseParam(productDetails: product);
+      throw UnsupportedError('Unsupported platform');
     }
   }
 
@@ -115,6 +130,7 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
           purchaseDetails.status == PurchaseStatus.restored) {
         final bool valid = await _verifyPurchase(purchaseDetails);
         if (valid) {
+          await _iap.completePurchase(purchaseDetails);
           emit(state.copyWith(
             status: purchaseDetails.status == PurchaseStatus.restored
                 ? InAppPurchaseStatus.restored
@@ -129,18 +145,11 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
         emit(state.copyWith(
             status: InAppPurchaseStatus.cancelled, error: 'Purchase Cancelled'));
       }
-
-      if (purchaseDetails.pendingCompletePurchase) {
-        await _iap.completePurchase(purchaseDetails);
-        emit(state.copyWith(status: InAppPurchaseStatus.ready));
-      }
     }
-
+    emit(state.copyWith(status: InAppPurchaseStatus.ready));
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
-    log(
-        '${purchaseDetails.verificationData.localVerificationData}:${purchaseDetails.verificationData.serverVerificationData}:${purchaseDetails.verificationData.source}');
     return true;
   }
 
@@ -148,5 +157,18 @@ class InAppPurchaseBloc extends Bloc<InAppPurchaseEvent, InAppPurchaseState> {
   Future<void> close() {
     _subscription.cancel();
     return super.close();
+  }
+}
+
+class PaymentQueueDelegate implements SKPaymentQueueDelegateWrapper {
+  @override
+  bool shouldContinueTransaction(
+      SKPaymentTransactionWrapper transaction, SKStorefrontWrapper storefront) {
+    return true;
+  }
+
+  @override
+  bool shouldShowPriceConsent() {
+    return true;
   }
 }
